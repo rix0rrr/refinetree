@@ -1,0 +1,76 @@
+.refinetree-popup .children { margin-left: 20px; }
+.refinetree-popup .element > .children { display: none; }
+.refinetree-popup .element.expanded > .children { display: block; }
+
+.refinetree-popup .child-selected > label { background-color: #E8F1FF; }
+.refinetree-popup .selected > label { background-color:  #C2DAFF; }
+
+.refinetree-popup .element > label:hover { background-color:  #679EF5; color: white; }
+
+
+.refinetree-popup {
+    border: solid 1px #5897FB;
+    border-top-width: 0px; 
+    overflow: auto;
+    background: white;
+    padding-top: 3px;
+
+       -moz-box-shadow: 2px 2px 4px #888;
+        -ms-box-shadow: 2px 2px 4px #888;
+    -webkit-box-shadow: 2px 2px 4px #888;
+            box-shadow: 2px 2px 4px #888;
+}
+
+.refinetree-popup label {
+    padding: 4px;
+    display: block;
+    margin-bottom: 0px;
+}
+
+.refinetree-popup input {
+    margin: 0px 5px;
+    vertical-align: baseline;
+}
+
+.refinetree-placeholder {
+    color: #AAA;
+}
+
+.refinetree-field {
+    border: solid 1px #AAA;
+    background: white;
+    padding: 5px;
+    line-height: 24px;
+}
+
+.refinetree-field.open {
+    border-color: #5897FB;
+    border-bottom-color: white; 
+
+       -moz-box-shadow: none;
+        -ms-box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+.refinetree-mention {
+    margin: 0px 2px;
+    padding: 1px 4px;
+    border: solid 1px #AAA;
+    white-space: nowrap;
+
+       -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+
+    background-color: #EEE;
+
+    background-image: -webkit-linear-gradient(top, #F4F4F4 20%, #F0F0F0 50%, #E8E8E8 52%, #EEE 100%);
+    background-image: -moz-linear-gradient(top, #F4F4F4 20%, #F0F0F0 50%, #E8E8E8 52%, #EEE 100%);
+    background-image: -o-linear-gradient(top, #F4F4F4 20%, #F0F0F0 50%, #E8E8E8 52%, #EEE 100%);
+    background-image: -ms-linear-gradient(top, #F4F4F4 20%, #F0F0F0 50%, #E8E8E8 52%, #EEE 100%);
+    background-image: linear-gradient(top, #F4F4F4 20%, #F0F0F0 50%, #E8E8E8 52%, #EEE 100%);
+
+    color: black;
+}
