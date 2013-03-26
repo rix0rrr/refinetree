@@ -268,7 +268,11 @@
          */
         function recordParents(parent, children) {
             $.each(children, function(i, child) {
-                idToParent[idOf(child)] = parent;
+                var childId = idOf(child);
+                if (childId in idToParent)
+                    throw new Error("The following element ID occurs multiple times: " + childId);
+
+                idToParent[childId] = parent;
 
                 if (!child.children) child.children = [];
                 recordParents(child, child.children);
