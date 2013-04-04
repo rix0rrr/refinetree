@@ -1,8 +1,14 @@
 ko.bindingHandlers.refineTree = {
     init: function(element, valueAccessor, allBindingsAccessor) {
         var options = allBindingsAccessor().refineTreeOptions;
+        var settings = allBindingsAccessor().refineTreeSettings;
+        
+        var allSettings = { eventOnApiChange: false };
+        if (typeof settings === 'object') {
+          $.extend(allSettings, settings);
+        }
 
-        $(element).refinetree({ eventOnApiChange: false })
+        $(element).refinetree(allSettings)
             .refinetree('tree', ko.utils.unwrapObservable(options))
             .change(function(ev, ids) {
                 valueAccessor()(ids);
@@ -15,4 +21,4 @@ ko.bindingHandlers.refineTree = {
     update: function(element, valueAccessor, allBindingsAccessor) {
         $(element).refinetree('selected', ko.utils.unwrapObservable(valueAccessor()));
     }
-}
+};
