@@ -89,4 +89,4 @@ Simply include this AFTER including KnockoutJS:
 
 Then you can simply bind to your view with this:
 
-    <div class="..." data-bind="refinetree: myoptions, selected: curoption"></div>
+    <div class="..." data-bind="refineTree: selectedOptions, refineTreeOptions: allOptions"></div>
