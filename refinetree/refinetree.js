@@ -129,7 +129,7 @@
             });
 
         // Hide the popup by clicking anywhere outside it
-        $(window).click(function() { self.hide(); })
+        $('body').click(function() { self.hide(); })
         popup.click(function(ev) { ev.stopPropagation(); });
 
         // Resize of the window should reposition the popup
