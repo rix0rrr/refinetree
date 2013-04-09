@@ -125,11 +125,10 @@
             .addClass('refinetree-field')
             .click(function(ev) {
                 self.toggle();
-                ev.stopPropagation();
             });
 
         // Hide the popup by clicking anywhere outside it
-        $('body').click(function() { self.hide(); })
+        $('html').click(function(ev) { if(!root.is(ev.target)) self.hide(); });
         popup.click(function(ev) { ev.stopPropagation(); });
 
         // Resize of the window should reposition the popup
