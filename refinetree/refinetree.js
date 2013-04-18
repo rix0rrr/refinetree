@@ -203,18 +203,15 @@
                 return '<span class="refinetree-placeholder">' + escapeHTML(options.placeholder) + '</span>';
         };
 
+
+
         /**
          * Return the ids of all items that are selected (checked without having children checked)
          */
         self.selected = function(content) { 
-            var flatTree = allOptions();
 
             if (typeof(content) === 'undefined') {
-                var sel = $.grep(flatTree, function(option) {
-                    return nodeChecked(option) && !childrenChecked(option);
-                });
-
-                return $.map(sel, idOf);
+                return $.map(self.selectedObjects(), idOf);
             } else {
                 // Copy the checked ids
                 checkedIds = new Set(content);
@@ -222,6 +219,7 @@
                 // Subset the ids to objects that are actually in the collection
                 var newChecked = [];        
 
+                var flatTree = allOptions();
                 $.each(content, function(i, id) {
                     // Find the node with this id
                     var n = find(flatTree, id);
@@ -241,6 +239,15 @@
                 if (options.eventOnApiChange) triggerChange();
             }
         };
+
+        /**
+         * Return all selected item objects
+         */
+        self.selectedObjects = function() {
+            return $.grep(allOptions(), function(option) {
+                return nodeChecked(option) && !childrenChecked(option);
+            });
+        }
 
         /**
          * Return or set the option tree
@@ -531,11 +538,12 @@
         }
 
         var tree = this.data('refinetree');
+        var result;
         if (tree[method]) {
-            tree[method].apply(this, Array.prototype.slice.call(arguments, 1));
+            result = tree[method].apply(this, Array.prototype.slice.call(arguments, 1));
         } else {
             $.error('Method ' +  method + ' does not exist on jQuery.refinetree');
         }
-        return this;
+        return result || this;
     }
 }(jQuery));

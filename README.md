@@ -1,12 +1,33 @@
 RefineTree
 ==========
 
-RefineTree is a hierarchical JavaScript filter that allows drilldown. It will display the selected items in a tree intelligently.
+RefineTree is a hierarchical JavaScript filter that allows drilldown. It will
+display the selected items in a tree intelligently.
 
 ![Screenshot of RefineTree](https://hub.sioux.eu/p/refinetree/source/tree/master/screenshot.png)
 
 RefineTree Depends on jQuery and Bootstrap.
 
+Concepts
+--------
+
+Nodes in a tree can be in one of two states:
+
+- *Checked*
+- *Selected*
+
+An item is *checked* if the user ticks the check box in front of it. Child
+items of an item are only displayed once the user checks it (hence the
+drill-down nature of the tree).
+
+The set of *selected* nodes is the set of deepest checked nodes. That is, the
+deepest checked node of which none of its children are checked. Typically, this
+is the set of nodes you would send to a server to figure out the selection.
+The implication of the RefineTree is that a node and all of its children are
+implicitly selected, unless the selection is refined further. 
+
+(This means that as soon as a node's child becomes checked, that node is still
+*checked* but no longer *selected*.)
 
 Usage
 -----
@@ -29,8 +50,7 @@ jQuery result in a variable ;)
     });
 
 
-### API:
-
+### API
 
     Function                    Description
     --------                    -------------
@@ -39,6 +59,8 @@ jQuery result in a variable ;)
     selected( [items] )         Return or set the IDs of all effectively selected
                                 items (that means CHECKED without any of its
                                 children checked).
+    selectedObjects()           Return all effectively selected items themselves
+                                (in an array).
     tree( [items] )             Return or set the items of the complete tree
                                 (see Elements section).
     summarize                   Return some HTML that describes the selected
@@ -74,8 +96,10 @@ Additional options that can be passed to the constructor:
 
 ### Elements
 
-RefineTree expects a hierarchical list of objects with an `id`, `text` and `children` property. `id` is used to identify items, `text` is the display text,
-and `children` is an array of more of these objects.
+RefineTree expects a hierarchical list of objects with an `id`, `text` and
+`children` property. `id` is used to identify items, `text` is the display
+text, and `children` is an array of more of these objects. The fields used
+for 'id' and 'text' can be specified as constructor options.
 
 
 KnockoutJS
