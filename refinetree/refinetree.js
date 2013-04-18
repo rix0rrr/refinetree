@@ -125,6 +125,7 @@
             .addClass('refinetree-field')
             .click(function(ev) {
                 self.toggle();
+                ev.stopPropagation();
             });
 
         // Hide the popup by clicking anywhere outside it
