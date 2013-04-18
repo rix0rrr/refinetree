@@ -159,7 +159,8 @@
             root.addClass('open');
             popup.css({
                 left      : offset.left,
-                top       : offset.top + root.outerHeight(),
+                // Optional parameter added, to make sure jQuery's outerHeight is used, and not jQuery-ui's outerheight.
+                top       : offset.top + root.outerHeight(false),
                 width     : root.width() + 10,
                 maxHeight : options.maxHeight,
                 display   : 'block'
