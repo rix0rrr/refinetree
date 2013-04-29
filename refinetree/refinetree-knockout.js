@@ -8,8 +8,9 @@ ko.bindingHandlers.refineTree = {
           $.extend(allSettings, settings);
         }
 
+        var optsVal = ko.utils.unwrapObservable(options);
         $(element).refinetree(allSettings)
-            .refinetree('tree', ko.utils.unwrapObservable(options))
+            .refinetree('tree', optsVal ? optsVal : [])
             .change(function(ev, ids) {
                 valueAccessor()(ids);
             });

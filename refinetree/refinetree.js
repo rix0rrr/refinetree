@@ -123,13 +123,14 @@
                 cursor: 'pointer'
             })
             .addClass('refinetree-field')
-            .click(function(ev) {
-                self.toggle();
-                ev.stopPropagation();
-            });
+            .click(function(){ self.toggle(); });
 
         // Hide the popup by clicking anywhere outside it
-        $('html').click(function(ev) { if(!root.is(ev.target)) self.hide(); });
+        $('html').click(function(ev) { 
+            // 'outside' means the target is not the root or a descendant of the root
+            if(!root.is(ev.target) && !$.contains(root.get(0), ev.target)) 
+                self.hide(); 
+        });
         popup.click(function(ev) { ev.stopPropagation(); });
 
         // Resize of the window should reposition the popup
@@ -203,14 +204,12 @@
                 return '<span class="refinetree-placeholder">' + escapeHTML(options.placeholder) + '</span>';
         };
 
-
-
         /**
          * Return the ids of all items that are selected (checked without having children checked)
          */
         self.selected = function(content) { 
 
-            if (typeof(content) === 'undefined') {
+            if (arguments.length === 0) {
                 return $.map(self.selectedObjects(), idOf);
             } else {
                 // Copy the checked ids
@@ -253,9 +252,12 @@
          * Return or set the option tree
          */
         self.tree = function(content) {
-            if (typeof(content) === 'undefined')
+            if (arguments.length === 0)
                 return tree;
             else {
+                if (typeof(content) !== 'object')
+                    throw new Error("refinetree('tree') received illegal argument: " + content)
+                
                 tree = content;
                 idToParent = {};
                 recordParents(null, tree);
