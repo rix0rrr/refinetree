@@ -4,7 +4,7 @@ RefineTree
 RefineTree is a hierarchical JavaScript filter that allows drilldown. It will
 display the selected items in a tree intelligently.
 
-![Screenshot of RefineTree](https://hub.sioux.eu/p/refinetree/source/tree/master/screenshot.png)
+![Screenshot of RefineTree](https://raw.github.com/rix0rrr/refinetree/master/screenshot.png)
 
 RefineTree Depends on jQuery and Bootstrap.
 
